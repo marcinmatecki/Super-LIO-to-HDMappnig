@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-noetic-desktop-full \
     python3-rosdep \
     python3-catkin-tools \
+    ros-noetic-jsk-rviz-plugins \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /opt

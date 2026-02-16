@@ -9,6 +9,9 @@ BAG_OUTPUT_CONTAINER='/ros_ws/recordings'
 RECORDED_BAG_NAME="recorded-super-lio.bag"
 HDMAPPING_OUT_NAME="output_hdmapping"
 
+RESULT_SUPER_LIO_HOST_PATH=~/hdmapping-benchmark/benchmark-SUPER-LIO-to-HDMapping/src/Super-LIO-to-HDMappnig/src/Super-LIO/src/super_lio/map
+RESULT_SUPER_LIO_CONTAINER_PATH=/ros_ws/src/Super-LIO/src/super_lio/map
+
 usage() {
   echo "Usage:"
   echo "  $0 <input.bag> <output_dir>"
@@ -55,6 +58,8 @@ BAG_OUTPUT_HOST=$(realpath "$BAG_OUTPUT_HOST")
 echo "Input bag : $DATASET_HOST_PATH"
 echo "Output dir: $BAG_OUTPUT_HOST"
 
+mkdir -p "$RESULT_IG_LIO_PATH"
+
 xhost +local:docker >/dev/null
 
 docker run -it --rm \
@@ -65,8 +70,10 @@ docker run -it --rm \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   -v "$DATASET_HOST_PATH":"$DATASET_CONTAINER_PATH":ro \
   -v "$BAG_OUTPUT_HOST":"$BAG_OUTPUT_CONTAINER" \
+  -v "$RESULT_SUPER_LIO_HOST_PATH":"$RESULT_SUPER_LIO_CONTAINER_PATH" \
   "$IMAGE_NAME" \
   /bin/bash -c '
+    rm -rf /ros_ws/src/Super-LIO/src/super_lio/map/PCD
 
     tmux new-session -d -s '"$TMUX_SESSION"'
 
