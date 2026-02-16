@@ -13,7 +13,7 @@ Download the dataset from [Bunker DVI Dataset](https://charleshamesse.github.io/
 
 This small toolset allows to integrate SLAM solution provided by [super-lio](https://github.com/Liansheng-Wang/Super-LIO) with [HDMapping](https://github.com/MapsHD/HDMapping).
 This repository contains ROS 1 workspace that :
-  - submodule to tested revision of faster-lio
+  - submodule to tested revision of super-lio
   - a converter that listens to topics advertised from odometry node and save data in format compatible with HDMapping.
 
 ## Dependecies
